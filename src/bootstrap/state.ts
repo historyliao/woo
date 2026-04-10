@@ -197,6 +197,8 @@ type State = {
   mainThreadAgentType: string | undefined
   // Remote mode (--remote flag)
   isRemoteMode: boolean
+  // Remote Control bridge session active flag
+  replBridgeActive?: boolean
   // Direct connect server URL (for display in header)
   directConnectServerUrl: string | undefined
   // System prompt section cache state
@@ -430,6 +432,10 @@ const STATE: State = getInitialState()
 
 export function getSessionId(): SessionId {
   return STATE.sessionId
+}
+
+export function isReplBridgeActive(): boolean {
+  return STATE.replBridgeActive === true
 }
 
 export function regenerateSessionId(
@@ -1755,4 +1761,3 @@ export function getPromptId(): string | null {
 export function setPromptId(id: string | null): void {
   STATE.promptId = id
 }
-
